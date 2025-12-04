@@ -1,19 +1,19 @@
 # Shellcode is not working in remote
 
-### Problem
+### 🐚 Problem
 
 ပုံမှန်ဆို shellcode ရှိတဲ့စီ jump ခုံသွားလိုက်ရင် shell က ရပြီ။
 
 Local မှာတော့ shell ကအလုပ်လုပ်တယ်။ remote မှာဘာလို့အလုပ်မလုပ်တာလဲ။
 
-	- Wrong shellcode
-	- Shellcode address
-	- Gadget 
-	- Input Filter
+* Wrong shellcode
+* Shellcode address
+* Gadget 
+* Input Filter
 
 အတာတွေထဲ တစ်ခုခုမှားလို့ပါ။
 
-### Input Filter
+### ✨ Input Filter
 
 Linux terminal မှာ input တွေ သေချာပြင်ဆင်ပေးတဲ့ **tty system** ရှိပါတယ်။
 
@@ -21,14 +21,16 @@ Linux terminal မှာ input တွေ သေချာပြင်ဆင်ပ
 
 သူ့ရဲ့ **Canonical Mode** မှာဆို special *(control)* character filter တွေရှိတယ်။
 
-**ဥပမာ**
+☃️ **ဥပမာ**
 
 ```Hello<backspace>```
 လို့ရိုက်လိုက်ရင် terminal မှာ
 ```Hello\x0f```
 လို့ဝင်သွားတယ်။
 
-အဲ့အခါ **\x0f** ကြောင့် ရှေ့တစ်လုံးကို tty က ဖြတ်ပေးသွားပါတယ်။```Hell```
+အဲ့အခါ **\x0f** ကြောင့် ရှေ့တစ်လုံးကို tty က ဖြတ်ပေးသွားပါတယ်။
+
+🌳```Hell```🌳
 
 ပြီးမှ program ကို ပို့ပေးပါတယ်။
 
@@ -38,7 +40,7 @@ Linux terminal မှာ input တွေ သေချာပြင်ဆင်ပ
 
 ဒီ https://jvns.ca/ascii မှာ လှတပတလေးကြည့်လို့ရပါတယ်။
 
-အရေးတကြီးလုပ်ဆောင်တာကတော့ အောက်က bytes တွေပါပဲ
+အရေးတကြီးလုပ်ဆောင်တာကတော့ အောက်က bytes တွေပါပဲ။ 🙉
 
 | Function  | Default Byte | TTY Effect                     |
 |-----------|--------------|--------------------------------|
@@ -56,7 +58,7 @@ Linux terminal မှာ input တွေ သေချာပြင်ဆင်ပ
 | VEOL      | 0x00          | Additional end-of-line        |
 | VEOL2     | 0x00          | Second end-of-line            |
 
-### Sample Program
+### 🐦‍⬛ Sample Program
 
 NovaCTF တုန်းက shellpwn ဆိုတဲ့ file ကို အတူတူစမ်းကြည့်ပါမယ်။
 ```
@@ -105,18 +107,18 @@ p.interactive()
 
 > အဲ့ကတည်းက သိသင့်ပါတယ်ကွာ tty filter လုပ်ထားမှန်း။
 
-Remote မှာ
+Remote မှာ 🎈
 
-	- NOP (\x90) တွေထည့်ပြီးစမ်းကြည့်တယ်။ မရဘူး
-	- Shellcode တွေပြောင်းကြည့်တယ်။ မရဘူး
-	- JUMP ESP ကို အမျိုးမျိုးပြောင်းစမ်းတယ်။ မရဘူး
-	- Offset မမှန်ဘူးထင်လို့ bruteforce တိုက်ပြီး အရင်ဆုံး သူမှာပါတဲ့ collect_feedback ကို ပြန်ခေါ်ဖို့ လုပ်ကြည့်တယ်။ ရရင် သိသာတယ်။
-	- နှစ်နာရီကြာသွားတယ်။ မရဘူး။ လီးလိုပဲဟေ့။
-	- Address လွဲနေလောက်ထင်လို့ bruteforce ပြန်တယ်။ မရပြန်ဘူး။
+* **NOP** *(\x90)* တွေထည့်ပြီးစမ်းကြည့်တယ်။ 😊 မရဘူး 
+* Shellcode တွေပြောင်းကြည့်တယ်။ 😐 မရဘူး
+* JUMP ESP ကို အမျိုးမျိုးပြောင်းစမ်းတယ်။ 😑 မရဘူး
+* Offset မမှန်ဘူးထင်လို့ bruteforce တိုက်ပြီး အရင်ဆုံး သူမှာပါတဲ့ collect_feedback ကို ပြန်ခေါ်ဖို့ လုပ်ကြည့်တယ်။ 🤔ရရင် သိသာတယ်။
+* နှစ်နာရီသာကြာသွားတယ်။ 😭 မရဘူး။ 🤬လီးလိုပဲဟေ့။
+* Address လွဲနေလောက်တယ်ထင်လို့ bruteforce ပြန်တယ်။ 🥴 မရပြန်ဘူး။
     
 အဲ့ဒါနဲ့ pwn မေးခွန်းထုတ်တဲ့သူက စောက်တလွဲ setup လုပ်ထားထင်လို့ တစ်ခြားဟာပဲပြောင်းလုပ်လိုက်တော့တယ်။
 
-### Solution
+### 🛠️ Solution
 
 ပြဿနာက *tty filter* ကြောင့်ပဲ။ သူများ writeup ဖတ်မှသိတယ်။
 
@@ -126,10 +128,10 @@ Collect_feedback ရဲ့ address **0x80491c8** မှာ \x04 ကပါတေ�
 
 ရိုးရိုးရှင်းရှင်းလေးပါ။ ```\x16``` *(escape character)* ရှိပါတယ်။
 
-\x16 နောက်မှာပါတဲ့ byte က Control character အနေနဲ့ အလုပ် မလုပ်တော့ပါဘူး။
+```\x16``` နောက်မှာပါတဲ့ byte က Control character အနေနဲ့ အလုပ် မလုပ်တော့ပါဘူး။
 လက်တွေ့လုပ်ကြည့်ရအောင်။
 
-### Lab Setup
+### 🧩 Lab Setup
 
 Terminal session တစ်ခုမှာ
 ```
